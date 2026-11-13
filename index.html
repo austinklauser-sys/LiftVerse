@@ -1704,7 +1704,7 @@ async function lookupFoodBarcode(b64){
     const key=(S.profile.apiKey||'').trim();
     if(!key)throw new Error('Please add your Gemini API key in Settings.');
     const sysCtx='You are an expert food label nutrition scanner. Analyze this food package barcode or nutrition label photo. Identify the food item name, serving size, and exact total calories, protein (g), carbs (g), and fat (g) per serving. End your response with one final line exactly like: MEAL_JSON: {"name":"food name","cal":0,"p":0,"c":0,"f":0} using integers.';
-    const res=await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${encodeURIComponent(key)}`,{
+    const res=await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-3.8-flash:generateContent?key=${encodeURIComponent(key)}`,{
       method:'POST',
       headers:{'Content-Type':'application/json'},
       body:JSON.stringify({contents:[{role:'user',parts:[{text:sysCtx},{inline_data:{mime_type:'image/jpeg',data:b64}}]}]})
